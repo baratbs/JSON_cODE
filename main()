@@ -1,0 +1,72 @@
+#include<stdio.h>
+
+
+
+//typedef for Data types
+typedef int jsonObj;
+
+typedef enum jsmn_type{
+	JSMN_UNDEFINED = 0,
+          JSMN_ARRAY = 1 << 1,
+          JSMN_STRING = 1 << 2,
+          JSMN_PRIMITIVE = 1 << 3
+}jsmn_type_t;
+
+typedef struct jsmn_parser{
+	unsigned int pos;
+	unsigned int toknext;
+	int toksuper;
+}jsmn_parser_t;
+
+typedef struct jsmntok{
+	jsmn_type_t       type;
+	int               start;
+	int               end;
+	int               size;
+}jsmntok_t;
+
+typedef enum jsonObjType{
+	JSON_VOID_OBJECT=0,
+	JSON_INT_OBJECT=1,
+	JSON_FLOAT_OBJECT,
+	JSON_STRING_OBJECT,
+	JSON_OBJECT,
+	JSON_ARRAY_OBJECT,
+	JSON_INVALID_OBJECT=-1,
+	JSON_INVALID_ARRAY=-1
+}jsonObjType_t;
+
+
+typedef struct jsonParser{
+	char           *jsontream;
+	int            noOftokens;
+	jsmn_parser_t  parser;
+	jsmntok_t      *tokList;
+}jsonparser_t;
+
+jsonparser_t js_p;
+
+
+void* get_object_by_type(jsonparser_t *jparser,jsonObj jobj,char *tagname,jsonObjType_t objtype);
+int main()
+{
+//tagname Declaration
+char *tagname=NULL;
+jsonObj jobj,jobj1;
+
+
+jobj1=get_object_by_type(&js_p,jobj,tagname,JSON_OBJECT);
+printf("%d\n",jobj1);
+}
+
+
+
+void* get_object_by_type(jsonparser_t *jparser,jsonObj jobj,char *tagname,jsonObjType_t objtype){
+
+jparser=NULL;
+
+if(!jparser||!tagname){
+
+return (void*)JSON_INVALID_OBJECT;
+}
+}
