@@ -1,0 +1,29 @@
+int json_parser_deinit(jsonparser *jparser){
+    jparser->jsonstream=NULL;
+    jparser->noOfToken=-1;
+    free(jparser->tokenList);
+    jparser->tokenList=NULL;
+    return 0;
+}
+
+typedef int jsonObj;
+
+jsonObj json_parser_init(jsonParser *jparser, char *jsonstream){
+    jsomparser *parser;
+
+    if(!jparser || !jsonstream){
+        return JSON_IBVALID_OBJECT;
+    }
+
+    jparser->jsonStrean=jsinstream;
+    jparser->noOfTokens=-1;
+    jparser->tokenList;
+
+    parser=&jparser->parser;
+
+    //Initialization
+
+    jsmn_init(parser);
+
+    jparser->tokenlist=(jsmntok_t *) malloc(jparser->noOftokens*sizeof(jsmnntok_t)));
+}
